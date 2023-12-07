@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const messages = [
   "Learn React ⚛️",
   "Apply for jobs 💼",
@@ -5,15 +7,19 @@ const messages = [
 ];
 
 const App = () => {
-  const step = 1;
+  const [step, setStep] = useState(1);
 
   // here this handle part here in the event handler function is pretty standard in react development.
   const handlePrevious = () => {
-    alert("Previous");
+    if(step > 1) {
+      setStep(step - 1);
+    }
   }
 
   const handleNext = () => {
-    alert("Next");
+    if(step < 3) {
+      setStep(step + 1);
+    }
   }
 
   return (
@@ -21,9 +27,9 @@ const App = () => {
 
       <div className="numbers">
 
-        <div className={`${step >= 1 ? 'active' : ""}`}>1</div>
-        <div className={`${step >= 2 ? 'active' : ""}`}>2</div>
-        <div className={`${step >= 3 ? 'active' : ""}`}>3</div>
+        <div className={`${step === 1 ? 'active' : ""}`}>1</div>
+        <div className={`${step === 2 ? 'active' : ""}`}>2</div>
+        <div className={`${step === 3 ? 'active' : ""}`}>3</div>
 
       </div>
 
