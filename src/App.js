@@ -7,6 +7,15 @@ const messages = [
 const App = () => {
   const step = 1;
 
+  // here this handle part here in the event handler function is pretty standard in react development.
+  const handlePrevious = () => {
+    alert("Previous");
+  }
+
+  const handleNext = () => {
+    alert("Next");
+  }
+
   return (
     <div className="steps">
 
@@ -22,8 +31,14 @@ const App = () => {
 
       <div className="buttons">
 
-        <button style={{backgroundColor: '#7950f2', color: '#fff'}}>Previous</button>
-        <button style={{backgroundColor: '#7950f2', color: '#fff'}}>Next</button>
+        {/* Here, we had used the listener, Also we can use multiple listener on a single element as well */}
+        <button style={{backgroundColor: '#7950f2', color: '#fff'}} onClick={handlePrevious}>
+          Previous
+        </button>
+
+        <button style={{backgroundColor: '#7950f2', color: '#fff'}} onClick={handleNext}>
+          Next
+        </button>
 
       </div>
 
