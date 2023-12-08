@@ -9,7 +9,14 @@ const messages = [
 const App = () => {
   const [step, setStep] = useState(1);
 
+  // This state define whether we want to show the application
+  const [isOpen, setIsOpen] = useState(true);
+
   // here this handle part here in the event handler function is pretty standard in react development.
+  const handleClose = () => {
+    isOpen ? setIsOpen(false) : setIsOpen(true);
+  }
+
   const handlePrevious = () => {
     if(step > 1) {
       setStep(step - 1);
@@ -23,32 +30,40 @@ const App = () => {
   }
 
   return (
-    <div className="steps">
+    <>
+      {/* Here &times will give a cross symbol */}
+      <button className="close" onClick={handleClose}>&times;</button>
 
-      <div className="numbers">
+      {/* Here, we had used the JS mode for a conditional rendering with short circuiting of and operator with isOpen state */}
+      { isOpen &&
+        <div className="steps">
 
-        <div className={`${step === 1 ? 'active' : ""}`}>1</div>
-        <div className={`${step === 2 ? 'active' : ""}`}>2</div>
-        <div className={`${step === 3 ? 'active' : ""}`}>3</div>
+          <div className="numbers">
 
-      </div>
+            <div className={`${step === 1 ? 'active' : ""}`}>1</div>
+            <div className={`${step === 2 ? 'active' : ""}`}>2</div>
+            <div className={`${step === 3 ? 'active' : ""}`}>3</div>
 
-      <p className="message">Step {step}: {messages[step - 1]}</p>
+          </div>
 
-      <div className="buttons">
+          <p className="message">Step {step}: {messages[step - 1]}</p>
 
-        {/* Here, we had used the listener, Also we can use multiple listener on a single element as well */}
-        <button style={{backgroundColor: '#7950f2', color: '#fff'}} onClick={handlePrevious}>
-          Previous
-        </button>
+          <div className="buttons">
 
-        <button style={{backgroundColor: '#7950f2', color: '#fff'}} onClick={handleNext}>
-          Next
-        </button>
+            {/* Here, we had used the listener, Also we can use multiple listener on a single element as well */}
+            <button style={{backgroundColor: '#7950f2', color: '#fff'}} onClick={handlePrevious}>
+              Previous
+            </button>
 
-      </div>
+            <button style={{backgroundColor: '#7950f2', color: '#fff'}} onClick={handleNext}>
+              Next
+            </button>
 
-    </div>
+          </div>
+
+        </div>
+      } 
+    </>
   );
 }
 
