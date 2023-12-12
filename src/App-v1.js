@@ -9,8 +9,10 @@ const messages = [
 const App = () => {
   const [step, setStep] = useState(1);
 
+  // This state define whether we want to show the application
   const [isOpen, setIsOpen] = useState(true);
 
+  // here this handle part here in the event handler function is pretty standard in react development.
   const handleClose = () => {
     setIsOpen((currstate) => !currstate);
   }
@@ -29,9 +31,10 @@ const App = () => {
 
   return (
     <>
+      {/* Here &times will give a cross symbol */}
       <button className="close" onClick={handleClose}>&times;</button>
 
-
+      {/* Here, we had used the JS mode for a conditional rendering with short circuiting of and operator with isOpen state */}
       { isOpen &&
         <div className="steps">
 
@@ -47,14 +50,15 @@ const App = () => {
 
           <div className="buttons">
 
-            {/* Here as you can observe that we have created a closing tag for our component and write CHILD PROP inside it */}
-            <Button textColor='#fff' bgColor='#7950f2' onClick={handlePrevious}>
-                <span>👈</span>Previous 
-            </Button>
+            {/* Here, we had used the listener, Also we can use multiple listener on a single element as well */}
+            <button style={{backgroundColor: '#7950f2', color: '#fff'}} onClick={handlePrevious}>
+              Previous
+            </button>
 
-            <Button textColor='#fff' bgColor='#7950f2' onClick={handleNext}>
-                Next<span>👉</span>
-            </Button>
+            <button style={{backgroundColor: '#7950f2', color: '#fff'}} onClick={handleNext}>
+              Next
+            </button>
+
           </div>
 
         </div>
@@ -64,10 +68,3 @@ const App = () => {
 }
 
 export default App;
-
-// Here, we are passing children here which is a predefined keyword that is used to access the CHILD PROP
-const Button = ({textColor, bgColor, onClick, text, emoji, children}) => {
-    return (
-        <button style={{ backgroundColor: bgColor, color: textColor }} onClick={onClick}> {children} </button>
-    );
-}
