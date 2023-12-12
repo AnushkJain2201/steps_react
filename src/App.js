@@ -43,7 +43,9 @@ const App = () => {
 
           </div>
 
-          <p className="message">Step {step}: {messages[step - 1]}</p>
+            <StepMessage step={step} >
+                {messages[step - 1]}
+            </StepMessage>
 
           <div className="buttons">
 
@@ -69,5 +71,14 @@ export default App;
 const Button = ({textColor, bgColor, onClick, text, emoji, children}) => {
     return (
         <button style={{ backgroundColor: bgColor, color: textColor }} onClick={onClick}> {children} </button>
+    );
+}
+
+const StepMessage = ({step, children}) => {
+    return (
+        <p className="message">
+            <h3>Step {step}:</h3>
+            {children}
+        </p>
     );
 }
